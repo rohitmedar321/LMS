@@ -1,0 +1,102 @@
+
+
+
+  <div class="course-management-container">
+        <!-- Header -->
+        <!-- Updated header class to course-management-header -->
+        <div class="course-management-header">
+            <div class="course-management-header-content">
+                <h1>Course Management</h1>
+                <p>Create and manage your courses with materials</p>
+            </div>
+            <div class="course-management-header-actions">
+                <span class="course-management-count"> <span id="course_count">not load</span> courses</span>
+                <!-- Updated button ID to course-management-add-btn -->
+                <button class="btn btn-primary" id="course-management-add-btn">
+                    <i data-lucide="plus"></i>
+                    Add Course
+                </button>
+            </div>
+        </div>
+
+        <!-- Course Grid -->
+        <!-- Updated grid class and ID to course-management-grid -->
+        <div class="course-management-grid" id="course-management-grid">
+            <!-- Courses will be dynamically inserted here -->
+        </div>
+
+        <!-- Empty State -->
+        <!-- Updated empty state class and ID -->
+  
+
+
+    </div>
+
+    <!-- Modal -->
+    <!-- Updated modal overlay class and ID -->
+    <div class="course-management-modal-overlay" id="course-management-modal-overlay">
+        <div class="course-management-modal">
+            <div class="course-management-modal-header">
+                <!-- Updated modal title and description IDs -->
+                <h2 id="course-management-modal-title">Create New Course</h2>
+                <p id="course-management-modal-description">Fill in the details below to create a course with materials</p>
+                <button class="course-management-modal-close" onclick="closeCourseModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <!-- Updated form ID and class -->
+            <form id="course-management-form" class="course-management-modal-content">
+                <div class="course-management-form-group">
+                    <!-- Updated input ID -->
+                    <label for="course-management-title">Course Title *</label>
+                    <input type="text" id="course-management-title" placeholder="Enter course title" required>
+                </div>
+
+                <div class="course-management-form-group">
+                    <!-- Updated textarea ID -->
+                    <label for="course-management-description">Course Description *</label>
+                    <textarea id="course-management-description" placeholder="Enter course description" required></textarea>
+                </div>
+
+                <!-- Updated upload grid class -->
+                <div class="course-management-upload-grid">
+                    <div class="course-management-upload-area">
+                        <label>Course Image</label>
+                        <!-- Updated upload box class and input ID -->
+                        <div class="course-management-upload-box" onclick="document.getElementById('course-management-image-upload').click()">
+                            <input type="file" id="course-management-image-upload" accept="image/*" style="display: none;">
+                            <i data-lucide="image"></i>
+                            <!-- Updated label ID -->
+                            <p id="course-management-image-label">Upload Image</p>
+                        </div>
+                    </div>
+
+                    <div class="course-management-upload-area">
+                        <label>Course Video (MP4)</label>
+                        <!-- Updated video upload elements -->
+                        <div class="course-management-upload-box" onclick="document.getElementById('course-management-video-upload').click()">
+                            <input type="file" id="course-management-video-upload" accept="video/mp4" style="display: none;">
+                            <i data-lucide="video"></i>
+                            <p id="course-management-video-label">Upload MP4 Video</p>
+                        </div>
+                    </div>
+
+                    <div class="course-management-upload-area">
+                        <label>Course Material (PDF)</label>
+                        <!-- Updated PDF upload elements -->
+                        <div class="course-management-upload-box" onclick="document.getElementById('course-management-pdf-upload').click()">
+                            <input type="file" id="course-management-pdf-upload" accept="application/pdf" style="display: none;">
+                            <i data-lucide="file-text"></i>
+                            <p id="course-management-pdf-label">Upload PDF</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i data-lucide="upload"></i>
+                    <!-- Updated submit text ID -->
+                    <span id="course-management-submit-text">Save Course</span>
+                </button>
+            </form>
+        </div>
+    </div>

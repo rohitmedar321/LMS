@@ -1,0 +1,9 @@
+
+the course URL should be save as 
+folder name (uuid)/index.m4u8
+
+
+how to setup the program
+
+view the .env and update the variable as per your system
+view the  config.json and update ips and  host

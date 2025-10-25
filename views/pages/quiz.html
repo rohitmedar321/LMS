@@ -1,0 +1,476 @@
+<div class="container">
+  <div class="quizCard">
+    <div class="card-header">
+      <h1
+        class="card-title"
+        style="
+          font-size: 4rem;
+          font-weight: 700;
+          color: #111827;
+          margin-bottom: 0.5rem;
+        "
+      >
+        Quiz Dashboard
+      </h1>
+      <p class="card-description">
+        Choose from our collection of quizzes. Complete easier quizzes to unlock
+        harder ones!
+      </p>
+    </div>
+    <div class="card-content">
+      <div class="table-container">
+        <table class="quiz-table">
+          <thead>
+            <tr>
+              <th class="status-col">Status</th>
+              <th class="name-col">Quiz Name</th>
+              <th>Category</th>
+              <th>Difficulty</th>
+              <th class="center">Questions</th>
+              <th class="center">Duration</th>
+              <th class="center">Rating</th>
+              <th class="center">Completed</th>
+              <th class="center">Action</th>
+            </tr>
+          </thead>
+          <tbody id="quiz-list">
+
+          
+            <tr class="quiz-row unlocked" data-quiz-id="4">
+              <td>
+                <svg
+                  class="icon unlock-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                  <path d="m7 11V7a5 5 0 0 1 9.9-1" />
+                </svg>
+              </td>
+              <td class="quiz-name">Art History Basics</td>
+              <td>
+                <span class="badge category-art">Art</span>
+              </td>
+              <td>
+                <span class="badge difficulty-easy">Easy</span>
+              </td>
+              <td class="center">12</td>
+              <td class="center">
+                <div class="duration">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12,6 12,12 16,14" />
+                  </svg>
+                  6 min
+                </div>
+              </td>
+              <td class="center">
+                <div class="rating">
+                  <svg
+                    class="icon-small star"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    stroke="currentColor"
+                  >
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  4.1
+                </div>
+              </td>
+              <td class="center">
+                <div class="completed">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="m22 21-3-3m0 0-3-3m3 3 3-3m-3 3-3 3" />
+                  </svg>
+                  750
+                </div>
+              </td>
+              <td class="center">
+                <button
+                  class="btn btn-primary"
+                  onclick="openQuiz('Art History Basics', true)"
+                >
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <polygon points="5,3 19,12 5,21" />
+                  </svg>
+                  Open
+                </button>
+              </td>
+            </tr>
+
+            <tr class="quiz-row locked" data-quiz-id="5">
+              <td>
+                <svg
+                  class="icon lock-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </td>
+              <td class="quiz-name">Renaissance Masters</td>
+              <td>
+                <span class="badge category-art">Art</span>
+              </td>
+              <td>
+                <span class="badge difficulty-medium">Medium</span>
+              </td>
+              <td class="center">18</td>
+              <td class="center">
+                <div class="duration">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12,6 12,12 16,14" />
+                  </svg>
+                  10 min
+                </div>
+              </td>
+              <td class="center">
+                <div class="rating">
+                  <svg
+                    class="icon-small star"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    stroke="currentColor"
+                  >
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  4.6
+                </div>
+              </td>
+              <td class="center">
+                <div class="completed">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="m22 21-3-3m0 0-3-3m3 3 3-3m-3 3-3 3" />
+                  </svg>
+                  450
+                </div>
+              </td>
+              <td class="center">
+                <button
+                  class="btn btn-secondary"
+                  disabled
+                  onclick="openQuiz('Renaissance Masters', false)"
+                >
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  Locked
+                </button>
+              </td>
+            </tr>
+
+            <!-- <tr class="quiz-row unlocked" data-quiz-id="6">
+              <td>
+                <svg
+                  class="icon unlock-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                  <path d="m7 11V7a5 5 0 0 1 9.9-1" />
+                </svg>
+              </td>
+              <td class="quiz-name">Modern History</td>
+              <td>
+                <span class="badge category-history">History</span>
+              </td>
+              <td>
+                <span class="badge difficulty-medium">Medium</span>
+              </td>
+              <td class="center">16</td>
+              <td class="center">
+                <div class="duration">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12,6 12,12 16,14" />
+                  </svg>
+                  9 min
+                </div>
+              </td>
+              <td class="center">
+                <div class="rating">
+                  <svg
+                    class="icon-small star"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    stroke="currentColor"
+                  >
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  4.3
+                </div>
+              </td>
+              <td class="center">
+                <div class="completed">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="m22 21-3-3m0 0-3-3m3 3 3-3m-3 3-3 3" />
+                  </svg>
+                  680
+                </div>
+              </td>
+              <td class="center">
+                <button
+                  class="btn btn-primary"
+                  onclick="openQuiz('Modern History', true)"
+                >
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <polygon points="5,3 19,12 5,21" />
+                  </svg>
+                  Open
+                </button>
+              </td>
+            </tr>
+
+            <tr class="quiz-row locked" data-quiz-id="7">
+              <td>
+                <svg
+                  class="icon lock-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </td>
+              <td class="quiz-name">Ancient Civilizations</td>
+              <td>
+                <span class="badge category-history">History</span>
+              </td>
+              <td>
+                <span class="badge difficulty-hard">Hard</span>
+              </td>
+              <td class="center">25</td>
+              <td class="center">
+                <div class="duration">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12,6 12,12 16,14" />
+                  </svg>
+                  18 min
+                </div>
+              </td>
+              <td class="center">
+                <div class="rating">
+                  <svg
+                    class="icon-small star"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    stroke="currentColor"
+                  >
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  4.9
+                </div>
+              </td>
+              <td class="center">
+                <div class="completed">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="m22 21-3-3m0 0-3-3m3 3 3-3m-3 3-3 3" />
+                  </svg>
+                  210
+                </div>
+              </td>
+              <td class="center">
+                <button
+                  class="btn btn-secondary"
+                  disabled
+                  onclick="openQuiz('Ancient Civilizations', false)"
+                >
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  Locked
+                </button>
+              </td>
+            </tr>
+
+            <tr class="quiz-row unlocked" data-quiz-id="8">
+              <td>
+                <svg
+                  class="icon unlock-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                  <path d="m7 11V7a5 5 0 0 1 9.9-1" />
+                </svg>
+              </td>
+              <td class="quiz-name">Basic Biology</td>
+              <td>
+                <span class="badge category-science">Science</span>
+              </td>
+              <td>
+                <span class="badge difficulty-easy">Easy</span>
+              </td>
+              <td class="center">14</td>
+              <td class="center">
+                <div class="duration">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12,6 12,12 16,14" />
+                  </svg>
+                  7 min
+                </div>
+              </td>
+              <td class="center">
+                <div class="rating">
+                  <svg
+                    class="icon-small star"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    stroke="currentColor"
+                  >
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  4.0
+                </div>
+              </td>
+              <td class="center">
+                <div class="completed">
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="m22 21-3-3m0 0-3-3m3 3 3-3m-3 3-3 3" />
+                  </svg>
+                  920
+                </div>
+              </td>
+              <td class="center">
+                <button
+                  class="btn btn-primary"
+                  onclick="openQuiz('Basic Biology', true)"
+                >
+                  <svg
+                    class="icon-small"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <polygon points="5,3 19,12 5,21" />
+                  </svg>
+                  Open
+                </button>
+              </td>
+            </tr>
+             -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="unlock-info">
+        <h3>How to Unlock Quizzes</h3>
+        <div class="unlock-grid">
+          <div class="unlock-item">
+            <span class="badge difficulty-easy">Easy</span>
+            <span>Available from start</span>
+          </div>
+          <div class="unlock-item">
+            <span class="badge difficulty-medium">Medium</span>
+            <span>Complete 2 Easy quizzes</span>
+          </div>
+          <div class="unlock-item">
+            <span class="badge difficulty-hard">Hard</span>
+            <span>Complete 3 Medium quizzes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

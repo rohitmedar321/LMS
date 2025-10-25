@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlatform - Learning Management System</title>
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="/css/adminMain.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+             * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            line-height: 1.6;
+            overflow: hidden;
+            
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h1>SafeAware - Admin panel</h1>
+                </div>
+            </div>
+            <!-- <div class="header-right">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search courses, assignments..." class="search-input">
+                </div>
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div class="avatar">
+                    <span>JD</span>
+                </div>
+            </div> -->
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+
+                <button class="nav-item active" onclick="location.href='/'">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </button>
+
+                <button class="nav-item" onclick="location.href='/'">
+                    <i class="fas fa-users"></i>
+                    <span>Manage courses</span>
+                </button>
+
+                <button class="nav-item" onclick="location.href='/quiz'">
+                    <i class="fas fa-file-text"></i>
+                    <span>Manage quiz</span>
+                </button>
+
+                <button class="nav-item" onclick="location.href='/integration'">
+                    <i class="fas fa-book-open" ></i>
+                    <span>Integration</span>
+                </button>
+                
+
+                <button class="nav-item" onclick="location.href='/settings'">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" style="padding-bottom: 5rem;">
+
+               <div class="banner" id="globalBanner">
+                <div class="spinner"></div>
+                <div class="tick"></div>
+                <span id="bannerMsg">Loading...</span>
+                <button class="close" onclick="hideBanner()">✕</button>
+            </div>            
+
+            <%- page %>
+       
+        </main>
+    </div>
+
+  
+    <script src="js/adminMain.js"></script>
+    <% if (script) { %>
+        <script src="js/<%= script %>"></script>
+    <% } %>
+
+    
+    <script>
+
+    function showBanner({ message = "Processing...", duration = 3000, autoClose = true } = {}) {
+    const banner = document.getElementById("globalBanner");
+    const msg = document.getElementById("bannerMsg");
+    banner.style.display = "flex";
+    banner.classList.remove("completed", "closing");
+    msg.textContent = message;
+
+    // clear old timers if any
+    if (banner._timer) clearTimeout(banner._timer);
+
+    // complete after duration
+    banner._timer = setTimeout(() => {
+        completeBanner(autoClose);
+    }, duration);
+    }
+
+
+    function completeBanner(autoClose = true) {
+      const banner = document.getElementById("globalBanner");
+      const msg = document.getElementById("bannerMsg");
+
+      banner.classList.add("completed");
+      msg.textContent = "Done!";
+
+      if (autoClose) {
+        banner._timer = setTimeout(() => {
+          banner.classList.add("closing");
+          setTimeout(() => { banner.style.display = "none"; }, 500);
+        }, 1500);
+      }
+    }
+
+    function hideBanner() {
+      const banner = document.getElementById("globalBanner");
+      banner.style.display = "none";
+      banner.classList.remove("completed", "closing");
+    }
+
+    </script>
+
+</body>
+</html>

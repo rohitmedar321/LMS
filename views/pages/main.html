@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Archive - LMS Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+
+    <style>
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #fafafa;
+  color: #0a0a0a;
+  line-height: 1.6;
+}
+
+/* Updated all class selectors to use archive- prefix */
+.archive-app {
+  min-height: 100vh;
+}
+
+.archive-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header */
+.archive-header {
+  background: white;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 1.5rem 0;
+}
+
+.archive-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.archive-header-text h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.archive-header-text p {
+  color: #737373;
+}
+
+.archive-view-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.archive-view-btn {
+  padding: 0.5rem;
+  border: 1px solid #e5e5e5;
+  background: white;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.archive-view-btn:hover {
+  background: #f5f5f5;
+}
+
+.archive-view-btn.archive-active {
+  background: #0a0a0a;
+  color: white;
+  border-color: #0a0a0a;
+}
+
+/* Breadcrumb */
+.archive-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem 0 1.5rem 0;
+  font-size: 0.875rem;
+  color: #737373;
+}
+
+.archive-breadcrumb-link {
+  background: none;
+  border: none;
+  color: #737373;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.archive-breadcrumb-link:hover {
+  color: #0a0a0a;
+}
+
+.archive-breadcrumb-current {
+  color: #0a0a0a;
+  font-weight: 500;
+}
+
+.archive-breadcrumb-separator {
+  display: flex;
+  align-items: center;
+}
+
+/* Search */
+.archive-search-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.archive-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #737373;
+  width: 1rem;
+  height: 1rem;
+}
+
+.archive-search-input {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background: white;
+}
+
+.archive-search-input:focus {
+  outline: none;
+  border-color: #0a0a0a;
+  box-shadow: 0 0 0 2px rgba(10, 10, 10, 0.1);
+}
+
+/* Content Sections */
+.archive-content-section {
+  margin-bottom: 1.5rem;
+}
+
+.archive-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.archive-section-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.archive-badge {
+  background: #f5f5f5;
+  color: #737373;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Grid Layout */
+.archive-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.archive-grid.grid-view {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.archive-grid.list-view {
+  grid-template-columns: 1fr;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.folder-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.folder-icon {
+  padding: 0.75rem;
+  background: rgba(10, 10, 10, 0.1);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.folder-icon i {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #0a0a0a;
+}
+
+.folder-info {
+  flex: 1;
+}
+
+.folder-info h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.folder-info p {
+  color: #737373;
+  font-size: 0.875rem;
+}
+
+.folder-arrow {
+  color: #737373;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Certificate Cards */
+.certificate-card {
+  cursor: default;
+}
+
+.certificate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.certificate-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.certificate-icon {
+  padding: 0.5rem;
+  background: rgba(10, 10, 10, 0.1);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certificate-icon i {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #0a0a0a;
+}
+
+.certificate-title h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.certificate-course {
+  color: #737373;
+  font-size: 0.875rem;
+}
+
+.grade-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.grade-badge.grade-a {
+  background: #0a0a0a;
+  color: white;
+}
+
+.grade-badge.grade-b {
+  background: #f5f5f5;
+  color: #737373;
+}
+
+.certificate-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.certificate-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #737373;
+  font-size: 0.875rem;
+}
+
+.certificate-detail i {
+  width: 1rem;
+  height: 1rem;
+}
+
+.credential-id {
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  background: #f5f5f5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.download-btn {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: #0a0a0a;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+
+.download-btn:hover {
+  background: #262626;
+}
+
+.download-btn i {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* No Results */
+.archive-no-results {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.archive-no-results-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #737373;
+  margin: 0 auto 1rem auto;
+}
+
+.archive-no-results h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.archive-no-results p {
+  color: #737373;
+}
+
+/* Utility Classes */
+.archive-hidden {
+  display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .archive-header-content {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .archive-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .archive-grid.grid-view {
+    grid-template-columns: 1fr;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Updated all class names and IDs to use 'archive-' prefix -->
+    <div class="archive-app">
+        <!-- Header -->
+        <div class="archive-header">
+            <div class="archive-container">
+                <div class="archive-header-content">
+                    <div class="archive-header-text">
+                        <h1>Certificate Archive</h1>
+                        <p>Manage and view your completed course certificates</p>
+                    </div>
+                    <div class="archive-view-controls">
+                        <button id="archive-gridViewBtn" class="archive-view-btn archive-active">
+                            <i data-lucide="grid"></i>
+                        </button>
+                        <button id="archive-listViewBtn" class="archive-view-btn">
+                            <i data-lucide="list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="archive-container">
+            <!-- Breadcrumb Navigation -->
+            <div class="archive-breadcrumb">
+                <button id="archive-homeBtn" class="archive-breadcrumb-link">Archive</button>
+                <span id="archive-breadcrumbSeparator" class="archive-breadcrumb-separator archive-hidden">
+                    <i data-lucide="chevron-right"></i>
+                </span>
+                <span id="archive-currentFolder" class="archive-breadcrumb-current archive-hidden"></span>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="archive-search-container">
+                <i data-lucide="search" class="archive-search-icon"></i>
+                <input 
+                    type="text" 
+                    id="archive-searchInput" 
+                    placeholder="Search folders and certificates..." 
+                    class="archive-search-input"
+                >
+            </div>
+
+            <!-- Content -->
+            <div id="archive-content">
+                <!-- Folder View -->
+                <div id="archive-folderView" class="archive-content-section">
+                    <div class="archive-section-header">
+                        <h2>Certificate Folders</h2>
+                        <span id="archive-totalBadge" class="archive-badge">0 Total Certificates</span>
+                    </div>
+                    <div id="archive-foldersGrid" class="archive-grid"></div>
+                </div>
+
+                <!-- Certificate View -->
+                <div id="archive-certificateView" class="archive-content-section archive-hidden">
+                    <div class="archive-section-header">
+                        <h2 id="archive-folderTitle">Certificates</h2>
+                        <span id="archive-certificateBadge" class="archive-badge">0 certificates</span>
+                    </div>
+                    <div id="archive-certificatesGrid" class="archive-grid"></div>
+                    <div id="archive-noCertificates" class="archive-no-results archive-hidden">
+                        <i data-lucide="file-text" class="archive-no-results-icon"></i>
+                        <h3>No certificates found</h3>
+                        <p id="archive-noResultsMessage">No certificates in this folder yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script >
+
+      // Mock data for certificates organized in folders
+const certificateData = {
+  folders: [
+    {
+      id: "web-development",
+      name: "Web Development",
+      count: 8,
+      certificates: [
+        {
+          id: "react-fundamentals",
+          title: "React Fundamentals",
+          course: "Modern React Development",
+          completedDate: "2024-01-15",
+          instructor: "Sarah Johnson",
+          grade: "A+",
+          credentialId: "RCT-2024-001",
+        },
+        {
+          id: "nextjs-mastery",
+          title: "Next.js Mastery",
+          course: "Full-Stack Next.js",
+          completedDate: "2024-02-20",
+          instructor: "Mike Chen",
+          grade: "A",
+          credentialId: "NXT-2024-002",
+        },
+        {
+          id: "typescript-advanced",
+          title: "Advanced TypeScript",
+          course: "TypeScript for Professionals",
+          completedDate: "2024-03-10",
+          instructor: "Emily Davis",
+          grade: "A+",
+          credentialId: "TS-2024-003",
+        },
+      ],
+    },
+    {
+      id: "data-science",
+      name: "Data Science",
+      count: 5,
+      certificates: [
+        {
+          id: "python-analytics",
+          title: "Python for Data Analytics",
+          course: "Data Science Fundamentals",
+          completedDate: "2024-01-28",
+          instructor: "Dr. Robert Kim",
+          grade: "A",
+          credentialId: "PY-2024-004",
+        },
+        {
+          id: "machine-learning",
+          title: "Machine Learning Basics",
+          course: "Introduction to ML",
+          completedDate: "2024-02-15",
+          instructor: "Lisa Wang",
+          grade: "B+",
+          credentialId: "ML-2024-005",
+        },
+      ],
+    },
+    {
+      id: "design",
+      name: "UI/UX Design",
+      count: 3,
+      certificates: [
+        {
+          id: "figma-mastery",
+          title: "Figma Design Mastery",
+          course: "Professional UI Design",
+          completedDate: "2024-03-05",
+          instructor: "Alex Rivera",
+          grade: "A+",
+          credentialId: "FIG-2024-006",
+        },
+      ],
+    },
+  ],
+}
+
+// State management
+const state = {
+  selectedFolder: null,
+  searchQuery: "",
+  viewMode: "grid",
+}
+
+// DOM elements
+const elements = {
+  gridViewBtn: document.getElementById("archive-gridViewBtn"),
+  listViewBtn: document.getElementById("archive-listViewBtn"),
+  homeBtn: document.getElementById("archive-homeBtn"),
+  breadcrumbSeparator: document.getElementById("archive-breadcrumbSeparator"),
+  currentFolder: document.getElementById("archive-currentFolder"),
+  searchInput: document.getElementById("archive-searchInput"),
+  folderView: document.getElementById("archive-folderView"),
+  certificateView: document.getElementById("archive-certificateView"),
+  foldersGrid: document.getElementById("archive-foldersGrid"),
+  certificatesGrid: document.getElementById("archive-certificatesGrid"),
+  totalBadge: document.getElementById("archive-totalBadge"),
+  certificateBadge: document.getElementById("archive-certificateBadge"),
+  folderTitle: document.getElementById("archive-folderTitle"),
+  noCertificates: document.getElementById("archive-noCertificates"),
+  noResultsMessage: document.getElementById("archive-noResultsMessage"),
+}
+
+// Lucide icon library
+const lucide = {
+  createIcons: () => {
+    // Placeholder for icon creation logic
+    console.log("Icons created")
+  },
+}
+
+// Initialize the app
+function init() {
+  setupEventListeners()
+  updateTotalBadge()
+  renderFolders()
+  lucide.createIcons()
+}
+
+// Event listeners
+function setupEventListeners() {
+  elements.gridViewBtn.addEventListener("click", () => setViewMode("grid"))
+  elements.listViewBtn.addEventListener("click", () => setViewMode("list"))
+  elements.homeBtn.addEventListener("click", () => setSelectedFolder(null))
+  elements.searchInput.addEventListener("input", (e) => setSearchQuery(e.target.value))
+}
+
+// State setters
+function setViewMode(mode) {
+  state.viewMode = mode
+  elements.gridViewBtn.classList.toggle("archive-active", mode === "grid")
+  elements.listViewBtn.classList.toggle("archive-active", mode === "list")
+  updateGridLayout()
+}
+
+function setSelectedFolder(folderId) {
+  state.selectedFolder = folderId
+  updateBreadcrumb()
+  updateSearchPlaceholder()
+  renderContent()
+}
+
+function setSearchQuery(query) {
+  state.searchQuery = query
+  renderContent()
+}
+
+// UI updates
+function updateBreadcrumb() {
+  const currentFolder = getCurrentFolder()
+
+  if (currentFolder) {
+    elements.breadcrumbSeparator.classList.remove("archive-hidden")
+    elements.currentFolder.classList.remove("archive-hidden")
+    elements.currentFolder.textContent = currentFolder.name
+  } else {
+    elements.breadcrumbSeparator.classList.add("archive-hidden")
+    elements.currentFolder.classList.add("archive-hidden")
+  }
+}
+
+function updateSearchPlaceholder() {
+  const placeholder = state.selectedFolder ? "Search certificates..." : "Search folders and certificates..."
+  elements.searchInput.placeholder = placeholder
+}
+
+function updateTotalBadge() {
+  const total = certificateData.folders.reduce((acc, folder) => acc + folder.count, 0)
+  elements.totalBadge.textContent = `${total} Total Certificates`
+}
+
+function updateGridLayout() {
+  elements.foldersGrid.className = `archive-grid ${state.viewMode}-view`
+  elements.certificatesGrid.className = `archive-grid ${state.viewMode}-view`
+}
+
+// Content rendering
+function renderContent() {
+  if (state.selectedFolder) {
+    renderCertificates()
+  } else {
+    renderFolders()
+  }
+}
+
+function renderFolders() {
+  elements.folderView.classList.remove("archive-hidden")
+  elements.certificateView.classList.add("archive-hidden")
+
+  const filteredFolders = getFilteredFolders()
+
+  elements.foldersGrid.innerHTML = filteredFolders
+    .map(
+      (folder) => `
+    <div class="card folder-card" onclick="setSelectedFolder('${folder.id}')">
+      <div class="folder-icon">
+        <i data-lucide="folder"></i>
+      </div>
+      <div class="folder-info">
+        <h3>${folder.name}</h3>
+        <p>${folder.count} certificate${folder.count !== 1 ? "s" : ""}</p>
+      </div>
+      <i data-lucide="chevron-right" class="folder-arrow"></i>
+    </div>
+  `,
+    )
+    .join("")
+
+  updateGridLayout()
+  lucide.createIcons()
+}
+
+function renderCertificates() {
+  elements.folderView.classList.add("archive-hidden")
+  elements.certificateView.classList.remove("archive-hidden")
+
+  const currentFolder = getCurrentFolder()
+  const filteredCertificates = getFilteredCertificates()
+
+  elements.folderTitle.textContent = `${currentFolder.name} Certificates`
+  elements.certificateBadge.textContent = `${filteredCertificates.length} of ${currentFolder.count} certificates`
+
+  if (filteredCertificates.length === 0) {
+    elements.certificatesGrid.classList.add("archive-hidden")
+    elements.noCertificates.classList.remove("archive-hidden")
+    elements.noResultsMessage.textContent = state.searchQuery
+      ? "Try adjusting your search terms"
+      : "No certificates in this folder yet"
+  } else {
+    elements.certificatesGrid.classList.remove("archive-hidden")
+    elements.noCertificates.classList.add("archive-hidden")
+
+    elements.certificatesGrid.innerHTML = filteredCertificates
+      .map(
+        (cert) => `
+      <div class="card certificate-card">
+        <div class="certificate-header">
+          <div class="certificate-title-section">
+            <div class="certificate-icon">
+              <i data-lucide="award"></i>
+            </div>
+            <div class="certificate-title">
+              <h3>${cert.title}</h3>
+              <p class="certificate-course">${cert.course}</p>
+            </div>
+          </div>
+          <span class="grade-badge ${cert.grade.startsWith("A") ? "grade-a" : "grade-b"}">
+            ${cert.grade}
+          </span>
+        </div>
+        <div class="certificate-details">
+          <div class="certificate-detail">
+            <i data-lucide="calendar"></i>
+            <span>Completed: ${formatDate(cert.completedDate)}</span>
+          </div>
+          <div class="certificate-detail">
+            <i data-lucide="file-text"></i>
+            <span>Instructor: ${cert.instructor}</span>
+          </div>
+          <div class="certificate-detail">
+            <span class="credential-id">ID: ${cert.credentialId}</span>
+          </div>
+          <button class="download-btn" onclick="downloadCertificate('${cert.id}')">
+            <i data-lucide="download"></i>
+            Download Certificate
+          </button>
+        </div>
+      </div>
+    `,
+      )
+      .join("")
+  }
+
+  updateGridLayout()
+  lucide.createIcons()
+}
+
+// Helper functions
+function getCurrentFolder() {
+  return certificateData.folders.find((f) => f.id === state.selectedFolder)
+}
+
+function getFilteredFolders() {
+  return certificateData.folders.filter((folder) => folder.name.toLowerCase().includes(state.searchQuery.toLowerCase()))
+}
+
+function getFilteredCertificates() {
+  const currentFolder = getCurrentFolder()
+  if (!currentFolder) return []
+
+  return currentFolder.certificates.filter(
+    (cert) =>
+      cert.title.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+      cert.course.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+      cert.instructor.toLowerCase().includes(state.searchQuery.toLowerCase()),
+  )
+}
+
+function formatDate(dateString) {
+  return new Date(dateString).toLocaleDateString()
+}
+
+function downloadCertificate(certId) {
+  alert(`Downloading certificate: ${certId}`)
+  // In a real app, this would trigger an actual download
+}
+
+// Initialize when DOM is loaded
+document.addEventListener("DOMContentLoaded", init)
+
+
+    </script>
+</body>
+</html>

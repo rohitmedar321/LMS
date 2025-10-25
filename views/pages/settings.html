@@ -1,0 +1,425 @@
+
+    <div class="lms-container">
+        <div class="lms-header">
+            <h1>LMS Settings</h1>
+            <p>Configure your learning management system settings and preferences</p>
+        </div>
+
+        <div class="lms-main-grid">
+              
+          
+              
+            <div class="lms-content">
+                 General Settings 
+                <div id="general" class="lms-section lms-section-active">
+                    <div class="lms-card">
+                        <div class="lms-card-header">
+                            <div class="lms-card-title">Platform Information</div>
+                            <div class="lms-card-description">Basic information about your learning management system</div>
+                        </div>
+                        <div class="lms-card-content">
+                            <div class="lms-form-grid">
+                                <div class="lms-form-group">
+                                    <label class="lms-label" for="platform-name">Platform Name</label>
+                                    <input class="lms-input" id="platform-name" placeholder="EduLearn LMS" />
+                                </div>
+                                <div class="lms-form-group">
+                                    <label class="lms-label" for="institution">Institution</label>
+                                    <input class="lms-input" id="institution" placeholder="University of Excellence" />
+                                </div>
+                            </div>
+                            <div class="lms-form-group">
+                                <label class="lms-label" for="description">Platform Description</label>
+                                <textarea class="lms-textarea" id="description" placeholder="A comprehensive learning management system for modern education"></textarea>
+                            </div>
+                            <div class="lms-form-grid">
+                                <div class="lms-form-group">
+                                    <label class="lms-label" for="timezone">Default Timezone</label>
+                                    <select class="lms-select" id="timezone">
+                                        <option value="">Select timezone</option>
+                                        <option value="utc">UTC</option>
+                                        <option value="est">Eastern Time</option>
+                                        <option value="pst">Pacific Time</option>
+                                        <option value="cet">Central European Time</option>
+                                    </select>
+                                </div>
+                                <div class="lms-form-group">
+                                    <label class="lms-label" for="language">Default Language</label>
+                                    <select class="lms-select" id="language">
+                                        <option value="">Select language</option>
+                                        <option value="en">English</option>
+                                        <option value="es">Spanish</option>
+                                        <option value="fr">French</option>
+                                        <option value="de">German</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lms-card">
+                        <div class="lms-card-header">
+                            <div class="lms-card-title">Platform Settings</div>
+                            <div class="lms-card-description">Configure general platform behavior</div>
+                        </div>
+                        <div class="lms-card-content">
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Allow Self Registration</div>
+                                    <p>Allow users to create their own accounts</p>
+                                </div>
+                                <div class="lms-switch" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Maintenance Mode</div>
+                                    <p>Put the platform in maintenance mode</p>
+                                </div>
+                                <div class="lms-switch" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Public Course Catalog</div>
+                                    <p>Allow public viewing of course catalog</p>
+                                </div>
+                                <div class="lms-switch lms-switch-active" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lms-save-container">
+                        <button class="lms-btn lms-btn-primary">Save Changes</button>
+                    </div>
+                </div>
+
+                 User Management Settings 
+                <div id="users" class="lms-section">
+                    <div class="lms-card">
+                        <div class="lms-card-header">
+                            <div class="lms-card-title">User Registration</div>
+                            <div class="lms-card-description">Configure how users can register and join your platform</div>
+                        </div>
+                        <div class="lms-card-content">
+                            <div class="lms-form-group">
+                                <label class="lms-label" for="default-role">Default User Role</label>
+                                <select class="lms-select" id="default-role">
+                                    <option value="">Select default role</option>
+                                    <option value="student">Student</option>
+                                    <option value="instructor">Instructor</option>
+                                    <option value="observer">Observer</option>
+                                </select>
+                            </div>
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Email Verification Required</div>
+                                    <p>Require email verification for new accounts</p>
+                                </div>
+                                <div class="lms-switch lms-switch-active" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Admin Approval Required</div>
+                                    <p>New accounts require admin approval</p>
+                                </div>
+                                <div class="lms-switch" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lms-card">
+                        <div class="lms-card-header">
+                            <div class="lms-card-title">User Roles & Permissions</div>
+                            <div class="lms-card-description">Manage user roles and their permissions</div>
+                        </div>
+                        <div class="lms-card-content">
+                            <div class="lms-role-item">
+                                <div class="lms-role-info">
+                                    <span class="lms-badge lms-badge-primary">Administrator</span>
+                                    <span>Full system access and management</span>
+                                </div>
+                                <button class="lms-btn lms-btn-outline lms-btn-sm">Edit</button>
+                            </div>
+                            <div class="lms-role-item">
+                                <div class="lms-role-info">
+                                    <span class="lms-badge lms-badge-secondary">Instructor</span>
+                                    <span>Create and manage courses, grade students</span>
+                                </div>
+                                <button class="lms-btn lms-btn-outline lms-btn-sm">Edit</button>
+                            </div>
+                            <div class="lms-role-item">
+                                <div class="lms-role-info">
+                                    <span class="lms-badge">Student</span>
+                                    <span>Enroll in courses, submit assignments</span>
+                                </div>
+                                <button class="lms-btn lms-btn-outline lms-btn-sm">Edit</button>
+                            </div>
+                            <button class="lms-btn lms-btn-outline lms-btn-full">Add New Role</button>
+                        </div>
+                    </div>
+
+                    <div class="lms-save-container">
+                        <button class="lms-btn lms-btn-primary">Save Changes</button>
+                    </div>
+                </div>
+
+                 Course Settings 
+                <div id="courses" class="lms-section">
+                    <div class="lms-card">
+                        <div class="lms-card-header">
+                            <div class="lms-card-title">Course Creation</div>
+                            <div class="lms-card-description">Configure default settings for new courses</div>
+                        </div>
+                        <div class="lms-card-content">
+                            <div class="lms-form-group">
+                                <label class="lms-label" for="max-students">Default Maximum Students per Course</label>
+                                <input class="lms-input" id="max-students" type="number" placeholder="50" />
+                            </div>
+                            <div class="lms-form-group">
+                                <label class="lms-label" for="course-duration">Default Course Duration (weeks)</label>
+                                <input class="lms-input" id="course-duration" type="number" placeholder="16" />
+                            </div>
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Auto-approve Course Requests</div>
+                                    <p>Automatically approve instructor course creation requests</p>
+                                </div>
+                                <div class="lms-switch" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Allow Course Cloning</div>
+                                    <p>Instructors can clone existing courses</p>
+                                </div>
+                                <div class="lms-switch lms-switch-active" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lms-card">
+                        <div class="lms-card-header">
+                            <div class="lms-card-title">Content Settings</div>
+                            <div class="lms-card-description">Configure course content and media settings</div>
+                        </div>
+                        <div class="lms-card-content">
+                            <div class="lms-form-group">
+                                <label class="lms-label">Maximum File Upload Size (MB)</label>
+                                <div class="lms-slider-container">
+                                    <input type="range" min="10" max="500" value="100" class="lms-slider" id="fileSize">
+                                    <div class="lms-slider-labels">
+                                        <span>10 MB</span>
+                                        <span>500 MB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lms-form-group">
+                                <label class="lms-label" for="file-types">Allowed File Types</label>
+                                <input class="lms-input" id="file-types" placeholder="pdf, doc, docx, ppt, pptx, jpg, png, mp4" />
+                            </div>
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Enable Video Streaming</div>
+                                    <p>Allow video content streaming</p>
+                                </div>
+                                <div class="lms-switch lms-switch-active" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lms-save-container">
+                        <button class="lms-btn lms-btn-primary">Save Changes</button>
+                    </div>
+                </div>
+
+                 Grading Settings 
+                <div id="grading" class="lms-section">
+                    <div class="lms-card">
+                        <div class="lms-card-header">
+                            <div class="lms-card-title">Grading Scale</div>
+                            <div class="lms-card-description">Configure the default grading scale and letter grades</div>
+                        </div>
+                        <div class="lms-card-content">
+                            <div class="lms-form-group">
+                                <label class="lms-label">Grading System</label>
+                                <select class="lms-select">
+                                    <option value="">Select grading system</option>
+                                    <option value="letter">Letter Grades (A-F)</option>
+                                    <option value="percentage">Percentage (0-100%)</option>
+                                    <option value="points">Points Based</option>
+                                    <option value="pass-fail">Pass/Fail</option>
+                                </select>
+                            </div>
+                            <div class="lms-form-group">
+                                <label class="lms-label">Grade Scale Configuration</label>
+                                <div class="lms-grade-grid">
+                                    <div class="lms-grade-item">
+                                        <span class="lms-badge lms-badge-primary">A</span>
+                                        <span>90-100%</span>
+                                    </div>
+                                    <div class="lms-grade-item">
+                                        <span class="lms-badge lms-badge-primary">B</span>
+                                        <span>80-89%</span>
+                                    </div>
+                                    <div class="lms-grade-item">
+                                        <span class="lms-badge lms-badge-primary">C</span>
+                                        <span>70-79%</span>
+                                    </div>
+                                    <div class="lms-grade-item">
+                                        <span class="lms-badge lms-badge-primary">D</span>
+                                        <span>60-69%</span>
+                                    </div>
+                                </div>
+                                <button class="lms-btn lms-btn-outline lms-btn-sm">Customize Grade Scale</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lms-card">
+                        <div class="lms-card-header">
+                            <div class="lms-card-title">Assignment Settings</div>
+                            <div class="lms-card-description">Configure default assignment and submission settings</div>
+                        </div>
+                        <div class="lms-card-content">
+                            <div class="lms-form-grid">
+                                <div class="lms-form-group">
+                                    <label class="lms-label" for="late-penalty">Late Submission Penalty (%)</label>
+                                    <input class="lms-input" id="late-penalty" type="number" placeholder="10" />
+                                </div>
+                                <div class="lms-form-group">
+                                    <label class="lms-label" for="grace-period">Grace Period (minutes)</label>
+                                    <input class="lms-input" id="grace-period" type="number" placeholder="5" />
+                                </div>
+                            </div>
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Allow Resubmissions</div>
+                                    <p>Students can resubmit assignments before deadline</p>
+                                </div>
+                                <div class="lms-switch lms-switch-active" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                            <div class="lms-switch-container">
+                                <div class="lms-switch-info">
+                                    <div class="lms-label">Plagiarism Detection</div>
+                                    <p>Enable automatic plagiarism checking</p>
+                                </div>
+                                <div class="lms-switch lms-switch-active" onclick="toggleLMSSwitch(this)">
+                                    <div class="lms-switch-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lms-save-container">
+                        <button class="lms-btn lms-btn-primary">Save Changes</button>
+                    </div>
+                </div>
+
+                 Coming Soon Sections 
+                <div id="communication" class="lms-section">
+                    <div class="lms-card">
+                        <div class="lms-card-content">
+                            <div class="lms-coming-soon">Communication settings coming soon...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="notifications" class="lms-section">
+                    <div class="lms-card">
+                        <div class="lms-card-content">
+                            <div class="lms-coming-soon">Notification settings coming soon...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="appearance" class="lms-section">
+                    <div class="lms-card">
+                        <div class="lms-card-content">
+                            <div class="lms-coming-soon">Appearance settings coming soon...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="security" class="lms-section">
+                    <div class="lms-card">
+                        <div class="lms-card-content">
+                            <div class="lms-coming-soon">Security settings coming soon...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="integrations" class="lms-section">
+                    <div class="lms-card">
+                        <div class="lms-card-content">
+                            <div class="lms-coming-soon">Integration settings coming soon...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarButtons = document.querySelectorAll('.lms-sidebar-button');
+            const sections = document.querySelectorAll('.lms-section');
+
+            sidebarButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetSection = this.getAttribute('data-section');
+                    
+                    // Remove active class from all buttons and sections
+                    sidebarButtons.forEach(btn => btn.classList.remove('lms-active'));
+                    sections.forEach(section => section.classList.remove('lms-section-active'));
+                    
+                    // Add active class to clicked button and corresponding section
+                    this.classList.add('lms-active');
+                    document.getElementById(targetSection).classList.add('lms-section-active');
+                });
+            });
+        });
+
+        // Switch toggle functionality
+        function toggleLMSSwitch(switchElement) {
+            switchElement.classList.toggle('lms-switch-active');
+        }
+
+        // Slider value display
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('fileSize');
+            if (slider) {
+                slider.addEventListener('input', function() {
+                    console.log('File size limit:', this.value + ' MB');
+                });
+            }
+        });
+
+        // Form submission handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            const saveButtons = document.querySelectorAll('.lms-btn-primary');
+            saveButtons.forEach(button => {
+                if (button.textContent.includes('Save Changes')) {
+                    button.addEventListener('click', function() {
+                        alert('Settings saved successfully!');
+                    });
+                }
+            });
+        });
+    </script> -->

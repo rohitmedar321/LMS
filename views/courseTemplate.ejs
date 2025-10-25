@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>YouTube White Theme - Course Player</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="/css/courseTemplate.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="main-content">
+          
+            <div class="video-section">
+                 
+                <div class="video-player">
+                    <div class="video-container">
+                        
+                        <video controls  fluid  playsinline class="video-player-element" style="width: 100%; height: 100%;  ">
+                            <source type="application/x-mpegURL" >
+                           
+                    </div>
+ 
+                </div>
+
+             
+                <div class="video-info">
+                    <h1 class="video-title">
+                        <%= title %>
+                    </h1>   
+                    
+                    <div class="video-meta">
+                        <div class="video-stats">
+                            <span class="views"><%= discription %></span>
+                            <span class="separator">•</span>
+                            <span class="upload-date">1 month ago</span>
+                        </div>
+                        
+                        <div class="video-actions">
+                            <div class="like-dislike">
+                                <button class="action-btn like-btn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
+                                    </svg>
+                                    4.2K
+                                </button>
+                                <div class="separator-line"></div>
+                                <button class="action-btn dislike-btn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                     
+                    <div class="video-tags">
+                        <span class="tag tag-blue">Technology</span>
+                        <span class="tag tag-green">Laptop Review</span>
+                        <span class="tag tag-purple">AMD Ryzen</span>
+                        <span class="tag tag-orange">Budget Laptop</span>
+                    </div>
+                </div>
+            </div>
+
+        
+            <div class="course-sidebar">
+                <div class="course-progress">
+                    <h2 class="sidebar-title">Course Progress</h2>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 35%"></div>
+                        </div>
+                    </div>
+                    <p class="progress-text">35% Complete • 7 of 20 lessons</p>
+                </div>
+
+                <div class="course-modules">
+                    <h3 class="section-title">Course Modules</h3>
+
+
+                    <div class="modules-list">
+                        <div class="module-item completed">
+                            <div class="module-icon completed-icon">
+                                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+
+
+                            <% if (notes) { %>
+                             
+                                <div class="module-content" onclick="window.open('<%= notes %>', '_blank')">
+                                    <h4 class="module-title">Download notes </h4>
+                                    <p class="module-status">Completed • 3 lessons</p>
+                                </div>
+
+                            <% } %>
+
+                          
+                        </div>
+
+                        <div class="module-item current">
+                            <div class="module-icon current-icon">
+                                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="module-content">
+                                <h4 class="module-title">Laptop Specifications</h4>
+                                <p class="module-status current-status">Current • 4 of 6 lessons</p>
+                            </div>
+                        </div>
+
+                        <div class="module-item locked">
+                            <div class="module-icon locked-icon">
+                                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="module-content">
+                                <h4 class="module-title locked-title">Performance Testing</h4>
+                                <p class="module-status locked-status">Locked • 5 lessons</p>
+                            </div>
+                        </div>
+
+                        <div class="module-item locked">
+                            <div class="module-icon locked-icon">
+                                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="module-content">
+                                <h4 class="module-title locked-title">Buying Guide</h4>
+                                <p class="module-status locked-status">Locked • 6 lessons</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="learning-resources">
+                    <h3 class="section-title">Learning Resources</h3>
+                    <div class="resources-list">
+                        <div class="resource-item">
+                            <div class="resource-icon orange-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="resource-content">
+                                <h4 class="resource-title">Quiz: Hardware Basics</h4>
+                                <p class="resource-description">Test your knowledge</p>
+                            </div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-icon purple-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="resource-content">
+                                <h4 class="resource-title">Specification Sheet</h4>
+                                <p class="resource-description">Download PDF guide</p>
+                            </div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-icon green-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="resource-content">
+                                <h4 class="resource-title">Community Forum</h4>
+                                <p class="resource-description">Ask questions & discuss</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary">Next Lesson</button>
+                    <button class="btn btn-outline">Notes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.querySelector('.video-player-element');
+        const videoSrc = "<%= src %>"; // The HLS stream URL from Express
+
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                // console.log('HLS manifest loaded, starting playback');
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // For Safari
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', () => {
+                video.play();
+            });
+        } else {
+            console.error('HLS not supported in this browser.');
+        }
+    });
+    </script>
+
+
+</body>
+</html>

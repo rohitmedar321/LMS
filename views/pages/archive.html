@@ -1,0 +1,78 @@
+<div class="archive-app">
+    <!-- Header -->
+    <div class="archive-header">
+        <div class="archive-container">
+            <div class="archive-header-content">
+                <div class="archive-header-text">
+                    <h1>
+                        Certificate Archive
+                    </h1>
+                    <p>Manage and view your completed course certificates</p>
+                </div>
+                <div class="archive-view-controls">
+                    <button id="archive-gridViewBtn" class="archive-view-btn archive-active">
+                        <i data-lucide="grid"></i>
+                    </button>
+                    <button id="archive-listViewBtn" class="archive-view-btn">
+                        <i data-lucide="list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="archive-container">
+        <!-- Breadcrumb Navigation -->
+        <div class="archive-breadcrumb">
+            <button id="archive-homeBtn" class="archive-breadcrumb-link">
+             Archive
+            </button>
+            <span id="archive-breadcrumbSeparator" class="archive-breadcrumb-separator archive-hidden">
+                <i data-lucide="chevron-right"></i>
+            </span>
+            <span id="archive-currentFolder" class="archive-breadcrumb-current archive-hidden"></span>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="archive-search-container">
+            <input 
+                type="text" 
+                id="archive-searchInput" 
+                placeholder="Search folders and certificates..." 
+                class="archive-search-input"
+            >
+        </div>
+
+        <!-- Content -->
+        <div id="archive-content">
+            <!-- Folder View -->
+            <div id="archive-folderView" class="archive-content-section">
+                <div class="archive-section-header">
+                    <h2>
+                        <i data-lucide="folder"></i> Certificate Folders
+                    </h2>
+                    <span id="archive-totalBadge" class="archive-badge">0 Total Certificates</span>
+                </div>
+                <div id="archive-foldersGrid" class="archive-grid"></div>
+            </div>
+
+            <!-- Certificate View -->
+            <div id="archive-certificateView" class="archive-content-section archive-hidden">
+                <div class="archive-section-header">
+                    <h2 id="archive-folderTitle">
+                        <i data-lucide="file-text"></i> Certificates
+                    </h2>
+                    <span id="archive-certificateBadge" class="archive-badge">0 certificates</span>
+                </div>
+                <div id="archive-certificatesGrid" class="archive-grid"></div>
+                <div id="archive-noCertificates" class="archive-no-results archive-hidden">
+                    <i data-lucide="file-text" class="archive-no-results-icon"></i>
+                    <h3>No certificates found</h3>
+                    <p id="archive-noResultsMessage">No certificates in this folder yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    

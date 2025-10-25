@@ -1,0 +1,133 @@
+  <div class="qm-wrapper">
+        <!-- Header -->
+        <div class="qm-header">
+            <div class="qm-header-content">
+                <h1>Quiz Manager</h1>
+                <p>Create and manage your interactive quizzes</p>
+            </div>
+            <button id="qm-add-quiz-btn" class="qm-btn qm-btn-primary">
+                <span class="qm-icon">+</span>
+                Add Quiz
+            </button>
+        </div>
+
+        <!-- Quiz List -->
+        <div id="qm-quiz-list" class="qm-quiz-grid">
+            <!-- Quizzes will be rendered here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="qm-empty-state" class="qm-empty-state" style="display: none;">
+            <div class="qm-empty-content">
+                <div class="qm-empty-icon">📝</div>
+                <h3>No quizzes yet</h3>
+                <p>Create your first quiz to get started</p>
+                <button id="qm-add-first-quiz-btn" class="qm-btn qm-btn-primary">
+                    <span class="qm-icon">+</span>
+                    Add Your First Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="qm-quiz-modal" class="qm-modal">
+        <div class="qm-modal-content">
+            <div class="qm-modal-header">
+                <h2 id="qm-modal-title">Create New Quiz</h2>
+                <button id="qm-close-modal" class="qm-close-btn">&times;</button>
+            </div>
+            
+            <div class="qm-modal-body">
+                <!-- Quiz Settings -->
+                <div class="qm-card">
+                    <div class="qm-card-header">
+                        <h3><span class="qm-dot qm-blue"></span>Quiz Settings</h3>
+                    </div>
+                    <div class="qm-card-content">
+                        <div class="qm-form-row">
+                            <div class="qm-form-group">
+                                <label for="qm-quiz-title">Quiz Title</label>
+                                <input type="text" id="qm-quiz-title" placeholder="Enter quiz title">
+                            </div>
+                            <div class="qm-form-group">
+                                <label for="qm-quiz-category">Quiz Category</label>
+                                <input type="text" id="qm-quiz-category" placeholder="e.g., technology, science, history">
+                            </div>
+                        </div>
+                        <div class="qm-form-group">
+                            <label for="qm-quiz-difficulty">Difficulty Level</label>
+                            <select id="qm-quiz-difficulty">
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Question -->
+                <div class="qm-card">
+                    <div class="qm-card-header">
+                        <h3><span class="qm-dot qm-green"></span>Add New Question</h3>
+                    </div>
+                    <div class="qm-card-content">
+                        <div class="qm-form-group">
+                            <label for="qm-question-text">Question</label>
+                            <textarea id="qm-question-text" rows="3" placeholder="Enter your question here"></textarea>
+                        </div>
+                        <div class="qm-form-group">
+                            <label for="qm-question-category">Question Category</label>
+                            <input type="text" id="qm-question-category" placeholder="e.g., Astronomy, Chemistry, Geography">
+                        </div>
+                        <div class="qm-form-group">
+                            <label>Answer Options</label>
+                            <div class="qm-options-grid">
+                                <div>
+                                    <label>Option 1</label>
+                                    <input type="text" id="qm-option1" placeholder="Answer option 1">
+                                </div>
+                                <div>
+                                    <label>Option 2</label>
+                                    <input type="text" id="qm-option2" placeholder="Answer option 2">
+                                </div>
+                                <div>
+                                    <label>Option 3</label>
+                                    <input type="text" id="qm-option3" placeholder="Answer option 3">
+                                </div>
+                                <div>
+                                    <label>Option 4</label>
+                                    <input type="text" id="qm-option4" placeholder="Answer option 4">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qm-form-group">
+                            <label for="qm-correct-answer">Correct Answer</label>
+                            <input type="text" id="qm-correct-answer" placeholder="Enter the correct answer (must match one of the options exactly)">
+                        </div>
+                        <button id="qm-add-question-btn" class="qm-btn qm-btn-primary qm-btn-full">
+                            <span class="qm-icon">+</span>
+                            Add Question
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Questions List -->
+                <div id="qm-questions-card" class="qm-card" style="display: none;">
+                    <div class="qm-card-header">
+                        <h3><span class="qm-dot qm-purple"></span>Quiz Questions (<span id="qm-question-count">0</span>)</h3>
+                    </div>
+                    <div class="qm-card-content">
+                        <div id="qm-questions-list" class="qm-questions-list">
+                            <!-- Questions will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="qm-modal-footer">
+                <button id="qm-cancel-btn" class="qm-btn qm-btn-secondary">Cancel</button>
+                <button id="qm-save-quiz-btn" class="qm-btn qm-btn-primary">Save Quiz</button>
+            </div>
+        </div>
+    </div>

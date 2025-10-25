@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Quiz</title>
+    <link rel="stylesheet" href="/css/quiz.css">
+</head>
+<body>
+
+    <div class="container" data-id=<%= id %> >
+        <!-- Header -->     
+        <div class="card header-card">
+            <div class="card-header text-center">
+                <h1 class="title">Knowledge Quiz</h1>
+                <p class="description">Answer all <span id="total-questions">8</span> questions below and submit when complete</p>
+            </div>
+            <div class="card-content">
+                <div class="progress-info">
+                    <span id="progress-text">Progress: 0/8 questions answered</span>
+                    <span id="progress-percentage">0% complete</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="validation-message" id="validation-message" style="display: none;">
+                    <span>⚠️ Please answer all questions before submitting. <span id="remaining-count">8</span> questions remaining.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Form -->
+        <form id="quiz-form">
+            <!-- Questions will be dynamically inserted here -->
+            <div id="questions-container"></div>
+
+            <!-- Submit Section -->
+            <div class="card submit-card">
+                <div class="card-content">
+                    <div class="submit-section">
+                        <div class="submit-info">
+                            <span id="submit-progress">0/8 questions answered</span>
+                            <span id="ready-indicator" style="display: none;">✓ Ready to submit!</span>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            Submit Quiz
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+  
+    </div>
+
+   <script>
+        const data = <%- JSON.stringify(question) %>;
+    </script>
+
+
+    <script src="/js/main.js"></script>
+   <script src="/js/quizexam.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Manager</title>
+    <link rel="stylesheet" href="css/uploadpage.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+   
+
+      <div class="success-message" id="successMessage" style="display: none">
+        <div class="success-content">
+          <i class="fas fa-check-circle"></i>
+          <span>Course saved successfully!</span>
+          <button class="success-link" onclick="showSavedPage()">
+            View saved courses →
+          </button>
+        </div>
+      </div>
+
+      <div id="createPage" class="page">
+        <div class="form-card">
+          <div class="card-header">
+            <h2 class="card-title">Create New Course</h2>
+            <p class="card-description">
+              Fill in the details below to create a new course with materials
+            </p>
+          </div>
+          <div class="card-content">
+            <form
+              id="courseForm"
+              class="form"
+              action="/upload"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <div class="form-group">
+                <label for="title" class="form-label">Course Title *</label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  class="form-input"
+                  placeholder="Enter course title"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="description" class="form-label"
+                  >Course Description *</label
+                >
+                <textarea
+                  id="description"
+                  name="description"
+                  class="form-textarea"
+                  placeholder="Enter course description"
+                  required
+                ></textarea>
+              </div>
+
+              <input type="text" name="thumnail" id="thumnail" hidden />
+
+              <div class="file-uploads">
+                <div class="upload-section">
+                  <label class="form-label">Course Image</label>
+                  <div
+                    class="upload-area"
+                    onclick="document.getElementById('imageInput').click()"
+                  >
+                    <input
+                      type="file"
+                      id="imageInput"
+                      accept="image/*"
+                      style="display: none"
+                      onchange="handleImageUpload(event, 'image')"
+                    />
+                    <div id="imagePreview" class="upload-content">
+                      <i class="fas fa-image upload-icon"></i>
+                      <p class="upload-text">Upload Image</p>
+                    </div>
+                  </div>
+                  <p id="imageInfo" class="file-info"></p>
+                </div>
+
+                <div class="upload-section">
+                  <label class="form-label">Course Video (MP4)</label>
+                  <div
+                    class="upload-area"
+                    onclick="document.getElementById('videoInput').click()"
+                  >
+                    <input
+                      type="file"
+                      id="videoInput"
+                      name="video"
+                      accept="video/mp4"
+                      style="display: none"
+                      onchange="handleFileUpload(event, 'video')"
+                    />
+                    <div class="upload-content">
+                      <i class="fas fa-video upload-icon"></i>
+                      <p class="upload-text">Upload MP4 Video</p>
+                    </div>
+                  </div>
+                  <p id="videoInfo" class="file-info"></p>
+                </div>
+
+                <div class="upload-section">
+                  <label class="form-label">Course Material (PDF)</label>
+                  <div
+                    class="upload-area"
+                    onclick="document.getElementById('pdfInput').click()"
+                  >
+                    <input
+                      type="file"
+                      id="pdfInput"
+                      name="pdf"
+                      accept="application/pdf"
+                      style="display: none"
+                      onchange="handleFileUpload(event, 'pdf')"
+                    />
+                    <div class="upload-content">
+                      <i class="fas fa-file-text upload-icon"></i>
+                      <p class="upload-text">Upload PDF</p>
+                    </div>
+                  </div>
+                  <p id="pdfInfo" class="file-info"></p>
+                </div>
+              </div>
+
+              <button type="submit" class="submit-btn" id="submitBtn">
+                <i class="fas fa-upload"></i>
+                Save Course
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="savedPage" class="page" style="display: none">
+        <div class="saved-header">
+          <div class="saved-header-left">
+            <h1 class="saved-title">Saved Courses</h1>
+            <p class="saved-subtitle">Manage and view your created courses</p>
+          </div>
+          <div class="saved-header-right">
+            <span class="course-count" id="courseCount">0 courses</span>
+            <button class="create-btn" onclick="showCreatePage()">
+              <i class="fas fa-plus"></i>
+              Create New Course
+            </button>
+          </div>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-content">
+            <div class="empty-icon">
+              <i class="fas fa-file-text"></i>
+            </div>
+            <h3 class="empty-title">No courses yet</h3>
+            <p class="empty-description">
+              You haven't created any courses yet. Start by creating your first
+              course with materials and content.
+            </p>
+            <button class="create-btn" onclick="showCreatePage()">
+              <i class="fas fa-plus"></i>
+              Create Your First Course
+            </button>
+          </div>
+        </div>
+
+        <div id="coursesGrid" class="courses-grid" style="display: none"></div>
+      </div>
+    </div>
+
+    <script src="js/uploadpage.js"></script>
+  </body>
+</html>

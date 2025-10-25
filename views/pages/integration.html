@@ -1,0 +1,125 @@
+    <!-- Added integration- prefix to container class -->
+    <div class="integration-container" style="width: 90%;">
+        <div class="integration-header">
+            <h1>Integration Management</h1>
+            <p class="integration-subtitle">Manage your integration settings, API keys, and deployment links</p>
+        </div>
+
+        <!-- Application Link Card -->
+        <div class="integration-card">
+            <div class="integration-card-header">
+                <h2 class="integration-card-title">
+                    <svg class="integration-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Integration Link
+                </h2>
+                <p class="integration-card-description">Your live integration URL and deployment information</p>
+            </div>
+            <div class="integration-card-content">
+                <div class="integration-input-group">
+                    <!-- Updated ID to integration-url -->
+                    <label for="integration-url">Integration URL</label>
+                    <div class="integration-input-with-buttons">
+                        <input type="text" id="integration-url" value="https://my-awesome-integration.vercel.app" readonly class="integration-mono-font">
+                        <button class="integration-btn-outline integration-btn-icon" onclick="copyToClipboard('https://my-awesome-integration.vercel.app', 'Integration URL')" title="Copy">
+                            <svg class="integration-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2 2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        <button class="integration-btn-outline integration-btn-icon" onclick="window.open('https://my-awesome-integration.vercel.app', '_blank')" title="Open">
+                            <svg class="integration-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15,3 21,3 21,9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="integration-status-section">
+                    <div class="integration-status-info">
+                        <p class="integration-status-label">Status</p>
+                        <span class="integration-badge integration-badge-success">Active</span>
+                    </div>
+                    <button class="integration-btn-destructive" onclick="handleDeleteIntegration()">
+                        <svg class="integration-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3,6 5,6 21,6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2 2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Delete Integration
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Integration Keys Card -->
+        <div class="integration-card">
+            <div class="integration-card-header">
+                <div class="integration-card-header-content">
+                    <div>
+                        <h2 class="integration-card-title">Integration Keys</h2>
+                        <p class="integration-card-description">Manage your integration keys for accessing the service programmatically</p>
+                    </div>
+                    <button class="integration-btn-primary" onclick="openAddIntegrationDialog()">
+                        <svg class="integration-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Integration Key
+                    </button>
+                </div>
+            </div>
+            <div class="integration-card-content">
+                <!-- Updated container ID to integration-keys-container -->
+                <div id="integration-keys-container">
+                    <!-- Integration keys will be rendered here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="integration-card integration-danger-card">
+            <div class="integration-card-header">
+                <h2 class="integration-card-title integration-danger-title">Danger Zone</h2>
+                <p class="integration-card-description">Irreversible and destructive actions</p>
+            </div>
+            <div class="integration-card-content">
+                <div class="integration-danger-section">
+                    <div class="integration-danger-info">
+                        <h4>Delete Everything</h4>
+                        <p>Permanently delete your integration, keys, and all associated data</p>
+                    </div>
+                    <button class="integration-btn-destructive">Delete All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Integration Key Modal -->
+    <!-- Updated modal ID to integration-add-modal -->
+    <div id="integration-add-modal" class="integration-modal">
+        <div class="integration-modal-content">
+            <div class="integration-modal-header">
+                <h3>Create New Integration Key</h3>
+                <p>Give your integration key a descriptive name to help you identify its purpose.</p>
+            </div>
+            <div class="integration-modal-body">
+                <div class="integration-input-group">
+                    <!-- Updated input ID to integration-key-name -->
+                    <label for="integration-key-name">Integration Key Name</label>
+                    <input type="text" id="integration-key-name" placeholder="e.g., safeclick integration key">
+                </div>
+            </div>
+            <div class="integration-modal-footer">
+                <button class="integration-btn-outline" onclick="closeAddIntegrationDialog()">Cancel</button>
+                <button class="integration-btn-primary" onclick="handleCreateIntegrationKey()">Create Integration Key</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <!-- Updated toast container ID -->
+    <div id="integration-toast-container"></div>
