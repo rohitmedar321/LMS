@@ -33,7 +33,7 @@
                     
                     <div class="video-meta">
                         <div class="video-stats">
-                            <span class="views"><%= discription %></span>
+                            <span class="views"><%= description %></span>
                             <span class="separator">•</span>
                             <span class="upload-date">1 month ago</span>
                         </div>
@@ -91,14 +91,17 @@
                             </div>
 
 
-                            <% if (notes) { %>
-                             
-                                <div class="module-content" onclick="window.open('<%= notes %>', '_blank')">
-                                    <h4 class="module-title">Download notes </h4>
-                                    <p class="module-status">Completed • 3 lessons</p>
-                                </div>
-
-                            <% } %>
+                       <% if (notes) { %>
+    <div class="module-content" onclick="window.open('<%= notes %>', '_blank')">
+        <h4 class="module-title">Download notes</h4>
+        <p class="module-status">Click to download</p>
+    </div>
+<% } else { %>
+    <div class="module-content">
+        <h4 class="module-title">Notes</h4>
+        <p class="module-status">No notes available for this course</p>
+    </div>
+<% } %>
 
                           
                         </div>

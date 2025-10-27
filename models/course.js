@@ -3,8 +3,14 @@ import db from "../db/db.js";
 const SetCourses = async (course) => {
   try {
     db.query(
-      "INSERT INTO courses (title, description,  src , image) VALUES (?, ?, ?, ?)",
-      [course.title, course.description, course.src, course.thumnail]
+      "INSERT INTO courses (title, description,  src , image, notes) VALUES (?, ?, ?, ?, ?)",
+      [
+        course.title,
+        course.description,
+        course.src,
+        course.thumnail,
+        course.notes,
+      ]
     );
 
     return true;

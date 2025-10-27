@@ -3,7 +3,8 @@ import { fileURLToPath } from "url";
 import path from "path";
 import cookieParser from "cookie-parser";
 import { main } from "../controllers/adminroutes.js";
-import api from "../controllers/api/APIadminroutes.js";
+import apiAdmin from "../controllers/api/APIadminroutes.js";
+import apiRoutes from "../controllers/api/APIroutes.js";
 
 const adminServer = express();
 
@@ -19,7 +20,8 @@ adminServer.set("view engine", "ejs");
 adminServer.set("views", path.resolve(__dirname, "../views"));
 
 adminServer.use("/", main);
-adminServer.use("/api", api);
+adminServer.use("/api", apiAdmin); // Course deletion routes
+adminServer.use("/api", apiRoutes); // Quiz editing route
 
 // adminServer.get("/", (req, res) => {
 //     res.render("main");

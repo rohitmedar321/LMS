@@ -69,10 +69,34 @@ const deleteQuiz = async (quizId) => {
 ////////
 const updateQuiz = async (quizId, data) => {
   try {
+    console.log("🔄 MODEL: Updating quiz ID:", quizId);
+    console.log("📝 MODEL: Update data received:", data);
+
     const { title, difficulty, category, questions } = data;
 
-    // Convert questions to JSON string for MySQL
-    const questionsJSON = JSON.stringify(questions);
+    // FIXED: Better data transformation
+    const transformedQuestions = questions.map((q, index) => {
+      // Ensure answers array is properly formatted
+      const answers = Array.isArray(q.answers)
+        ? q.answers.map((ans, ansIndex) => ({
+            id: ans.id || `ans${index}_${ansIndex}`,
+            text: ans.text || ans, // Handle both object and string formats
+          }))
+        : [];
+
+      return {
+        id: q.id || `q${index + 1}`,
+        question: q.question || "",
+        category: q.category || "",
+        answer: q.answer || "",
+        answers: answers,
+      };
+    });
+
+    console.log("🔄 MODEL: Transformed questions:", transformedQuestions);
+
+    // Convert to JSON string for MySQL
+    const questionsJSON = JSON.stringify(transformedQuestions);
 
     const [result] = await db.query(
       "UPDATE quiz SET title = ?, difficulty = ?, category = ?, questions = CAST(? AS JSON) WHERE id = ?",
@@ -83,9 +107,17 @@ const updateQuiz = async (quizId, data) => {
       throw new Error("Quiz not found or no changes made");
     }
 
-    return { message: "Quiz updated successfully" };
+    console.log(
+      "✅ MODEL: Quiz updated successfully, affected rows:",
+      result.affectedRows
+    );
+    return {
+      message: "Quiz updated successfully",
+      id: quizId,
+      affectedRows: result.affectedRows,
+    };
   } catch (error) {
-    console.error("Error updating quiz:", error);
+    console.error("❌ MODEL: Error updating quiz:", error);
     throw error;
   }
 };
